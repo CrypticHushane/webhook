@@ -23,7 +23,10 @@
 
 const express = require("express"),
     bodyParser = require("body-parser"),
+    dotenv = require('dotenv');
     app = express().use(bodyParser.json());
+    
+dotenv.config();    
 const PORT = process.env.PORT || 1337;
 
 app.listen(PORT, () => {
@@ -50,7 +53,7 @@ app.post("/webhook", (req, res) => {
 });
 
 app.get("/webhook", (req, res) => {
-    let VERIFY_TOKEN = "KILLASHANGZ999";
+    let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
     let mode = req.query["hub.mode"];
     let token = req.query["hub.verify_token"];
